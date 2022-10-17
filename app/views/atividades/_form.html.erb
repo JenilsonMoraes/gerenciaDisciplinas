@@ -32,6 +32,11 @@
   </div>
 
   <div>
+    <%= form.label :disciplina_id, style: "display: block" %>
+    <%= collection_select(:atividade, :disciplina_id, Disciplina.all, :id, :disciplina_completa) %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
