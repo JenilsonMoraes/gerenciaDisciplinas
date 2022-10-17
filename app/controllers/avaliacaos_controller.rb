@@ -65,6 +65,6 @@ class AvaliacaosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def avaliacao_params
-      params.require(:avaliacao).permit(:pontos, :observacoes)
+      params.require(:avaliacao).permit(:pontos, :observacoes, :atividade_id, :aluno_id)
     end
 end
