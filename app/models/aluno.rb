@@ -5,4 +5,5 @@ class Aluno < ApplicationRecord
   has_many :atividades
 
   validates :turma_id, presence: true
+
 end
