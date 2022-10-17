@@ -3,6 +3,6 @@ class Turma < ApplicationRecord
   has_many :alunos
 
   def turma_completa
-    "#{letra};#{ano};#{anoLetivo}"
+    "Letra: #{letra} Ano: #{ano} Ano letivo: #{anoLetivo}"
   end
 end
