@@ -15,6 +15,10 @@
     <%= form.label :nome, style: "display: block" %>
     <%= form.text_field :nome %>
   </div>
+  <div>
+    <%= form.label :turma_id, style: "display: block" %>
+    <%= collection_select(:aluno, :turma_id, Turma.all, :id, :letra) %>
+  </div>
 
   <div>
     <%= form.submit %>
