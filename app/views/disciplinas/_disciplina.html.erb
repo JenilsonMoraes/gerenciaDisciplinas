@@ -1,12 +1,16 @@
-<div id="<%= dom_id disciplina %>">
-  <p>
-    <strong>Nome:</strong>
-    <%= disciplina.nome %>
-  </p>
+  <div id="<%= dom_id disciplina %>">
+    <p>
+      <strong>Nome:</strong>
+      <%= disciplina.nome %>
+    </p>
 
-  <p>
-    <strong>Anoletivo:</strong>
-    <%= disciplina.anoLetivo %>
-  </p>
+    <p>
+      <strong>Anoletivo:</strong>
+      <%= disciplina.anoLetivo %>
+    </p>
+
+    <strong>Turma:</strong>
+    <%= disciplina.turma.letra %>
+    </p>
 
 </div>

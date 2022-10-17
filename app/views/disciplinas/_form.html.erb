@@ -22,6 +22,11 @@
   </div>
 
   <div>
+    <%= form.label :turma_id, style: "display: block" %>
+    <%= collection_select(:disciplina, :turma_id, Turma.all, :id, :letra) %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
