@@ -22,6 +22,16 @@
   </div>
 
   <div>
+    <%= form.label :atividade_id, style: "display: block" %>
+    <%= collection_select(:avaliacao, :atividade_id, Atividade.all, :id, :atividade_completa) %>
+  </div>
+
+  <div>
+    <%= form.label :aluno_id, style: "display: block" %>
+    <%= collection_select(:avaliacao, :aluno_id, Aluno.all, :id, :nome) %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
