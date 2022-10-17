@@ -378,3 +378,1094 @@ Processing by AlunosController#show as TURBO_STREAM
 Completed 200 OK in 37ms (Views: 30.3ms | ActiveRecord: 0.5ms | Allocations: 5718)
 
 
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (16.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (19.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAlunos (20221017031127)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "alunos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nome" varchar, "turma_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_952067d150"
+FOREIGN KEY ("turma_id")
+  REFERENCES "turmas" ("id")
+)[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE INDEX "index_alunos_on_turma_id" ON "alunos" ("turma_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031127"]]
+  [1m[36mTRANSACTION (16.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAtividades (20221017031225)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "atividades" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "bimestre" integer, "descricao" varchar, "data" date, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031225"]]
+  [1m[36mTRANSACTION (25.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAvaliacaos (20221017031259)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "avaliacaos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "pontos" float, "observacoes" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031259"]]
+  [1m[36mTRANSACTION (22.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateDisciplinas (20221017031405)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "disciplinas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nome" varchar, "anoLetivo" integer, "turma_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_f651071277"
+FOREIGN KEY ("turma_id")
+  REFERENCES "turmas" ("id")
+)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE INDEX "index_disciplinas_on_turma_id" ON "disciplinas" ("turma_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031405"]]
+  [1m[36mTRANSACTION (26.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateTurmas (20221017031441)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "letra" varchar, "ano" integer, "anoLetivo" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031441"]]
+  [1m[36mTRANSACTION (18.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-10-17 15:22:20.141782"], ["updated_at", "2022-10-17 15:22:20.141782"]]
+  [1m[36mTRANSACTION (15.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2022-10-17 12:22:54 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (4.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/es/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/es/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 5.0ms | Allocations: 526)
+Completed 200 OK in 38ms (Views: 12.9ms | ActiveRecord: 0.0ms | Allocations: 3826)
+
+
+Started GET "/disciplinas" for 127.0.0.1 at 2022-10-17 12:23:07 -0300
+Processing by DisciplinasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/index.html.erb within layouts/application
+  [1m[36mDisciplina Load (0.2ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas"[0m
+  ↳ app/views/disciplinas/index.html.erb:6
+  Rendered disciplinas/index.html.erb within layouts/application (Duration: 37.3ms | Allocations: 1635)
+  Rendered layout layouts/application.html.erb (Duration: 304.3ms | Allocations: 35539)
+Completed 200 OK in 343ms (Views: 313.7ms | ActiveRecord: 0.2ms | Allocations: 38461)
+
+
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 12:23:09 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.3ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:26
+  Rendered disciplinas/_form.html.erb (Duration: 60.0ms | Allocations: 6054)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 70.5ms | Allocations: 6393)
+  Rendered layout layouts/application.html.erb (Duration: 82.5ms | Allocations: 8689)
+Completed 200 OK in 141ms (Views: 89.3ms | ActiveRecord: 1.4ms | Allocations: 13500)
+
+
+Started GET "/turmas" for 127.0.0.1 at 2022-10-17 12:23:19 -0300
+Processing by TurmasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering turmas/index.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/turmas/index.html.erb:6
+  Rendered turmas/index.html.erb within layouts/application (Duration: 12.6ms | Allocations: 1277)
+  Rendered layout layouts/application.html.erb (Duration: 28.5ms | Allocations: 3671)
+Completed 200 OK in 51ms (Views: 44.6ms | ActiveRecord: 0.2ms | Allocations: 4547)
+
+
+Started GET "/turmas/new" for 127.0.0.1 at 2022-10-17 12:23:21 -0300
+Processing by TurmasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering turmas/new.html.erb within layouts/application
+  Rendered turmas/_form.html.erb (Duration: 13.7ms | Allocations: 1908)
+  Rendered turmas/new.html.erb within layouts/application (Duration: 22.0ms | Allocations: 2192)
+  Rendered layout layouts/application.html.erb (Duration: 41.1ms | Allocations: 4375)
+Completed 200 OK in 88ms (Views: 53.0ms | ActiveRecord: 5.1ms | Allocations: 7599)
+
+
+Started POST "/turmas" for 127.0.0.1 at 2022-10-17 12:23:29 -0300
+Processing by TurmasController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "turma"=>{"letra"=>"A", "ano"=>"5", "anoLetivo"=>"2022"}, "commit"=>"Create Turma"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/turmas_controller.rb:27:in `block in create'
+  [1m[36mTurma Create (0.5ms)[0m  [1m[32mINSERT INTO "turmas" ("letra", "ano", "anoLetivo", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["letra", "A"], ["ano", 5], ["anoLetivo", 2022], ["created_at", "2022-10-17 15:23:29.308200"], ["updated_at", "2022-10-17 15:23:29.308200"]]
+  ↳ app/controllers/turmas_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (23.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/turmas_controller.rb:27:in `block in create'
+Redirected to http://127.0.0.1:3000/turmas/1
+Completed 302 Found in 60ms (ActiveRecord: 24.0ms | Allocations: 4085)
+
+
+Started GET "/turmas/1" for 127.0.0.1 at 2022-10-17 12:23:29 -0300
+Processing by TurmasController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mTurma Load (0.3ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/turmas_controller.rb:63:in `set_turma'
+  Rendering layout layouts/application.html.erb
+  Rendering turmas/show.html.erb within layouts/application
+  Rendered turmas/_turma.html.erb (Duration: 1.1ms | Allocations: 250)
+  Rendered turmas/show.html.erb within layouts/application (Duration: 6.4ms | Allocations: 1647)
+  Rendered layout layouts/application.html.erb (Duration: 23.4ms | Allocations: 3943)
+Completed 200 OK in 34ms (Views: 25.1ms | ActiveRecord: 0.3ms | Allocations: 6749)
+
+
+Started GET "/disciplinas" for 127.0.0.1 at 2022-10-17 12:23:38 -0300
+Processing by DisciplinasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/index.html.erb within layouts/application
+  [1m[36mDisciplina Load (0.1ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas"[0m
+  ↳ app/views/disciplinas/index.html.erb:6
+  Rendered disciplinas/index.html.erb within layouts/application (Duration: 5.4ms | Allocations: 922)
+  Rendered layout layouts/application.html.erb (Duration: 25.3ms | Allocations: 3106)
+Completed 200 OK in 29ms (Views: 28.5ms | ActiveRecord: 0.1ms | Allocations: 3411)
+
+
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 12:23:41 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:26
+  Rendered disciplinas/_form.html.erb (Duration: 16.7ms | Allocations: 2045)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 23.5ms | Allocations: 2135)
+  Rendered layout layouts/application.html.erb (Duration: 45.1ms | Allocations: 4317)
+Completed 200 OK in 47ms (Views: 45.9ms | ActiveRecord: 0.2ms | Allocations: 4596)
+
+
+Started POST "/disciplinas" for 127.0.0.1 at 2022-10-17 12:23:43 -0300
+Processing by DisciplinasController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "disciplina"=>{"nome"=>"", "anoLetivo"=>"", "turma_id"=>"1"}, "commit"=>"Create Disciplina"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mDisciplina Create (0.5ms)[0m  [1m[32mINSERT INTO "disciplinas" ("nome", "anoLetivo", "turma_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["nome", ""], ["anoLetivo", nil], ["turma_id", 1], ["created_at", "2022-10-17 15:23:43.730812"], ["updated_at", "2022-10-17 15:23:43.730812"]]
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (16.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+Redirected to http://127.0.0.1:3000/disciplinas/1
+Completed 302 Found in 98ms (ActiveRecord: 17.2ms | Allocations: 6173)
+
+
+Started GET "/disciplinas/1" for 127.0.0.1 at 2022-10-17 12:23:43 -0300
+Processing by DisciplinasController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mDisciplina Load (0.3ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas" WHERE "disciplinas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:63:in `set_disciplina'
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/show.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/disciplinas/_disciplina.html.erb:13
+  Rendered disciplinas/_disciplina.html.erb (Duration: 11.9ms | Allocations: 863)
+  Rendered disciplinas/show.html.erb within layouts/application (Duration: 20.0ms | Allocations: 1954)
+  Rendered layout layouts/application.html.erb (Duration: 39.1ms | Allocations: 4235)
+Completed 200 OK in 60ms (Views: 49.6ms | ActiveRecord: 0.5ms | Allocations: 5740)
+
+
+Started DELETE "/disciplinas/1" for 127.0.0.1 at 2022-10-17 12:23:46 -0300
+Processing by DisciplinasController#destroy as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"1"}
+  [1m[36mDisciplina Load (0.1ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas" WHERE "disciplinas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:63:in `set_disciplina'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:52:in `destroy'
+  [1m[36mDisciplina Destroy (0.3ms)[0m  [1m[31mDELETE FROM "disciplinas" WHERE "disciplinas"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:52:in `destroy'
+  [1m[36mTRANSACTION (16.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:52:in `destroy'
+Redirected to http://127.0.0.1:3000/disciplinas
+Completed 302 Found in 56ms (ActiveRecord: 16.8ms | Allocations: 2552)
+
+
+Started GET "/disciplinas" for 127.0.0.1 at 2022-10-17 12:23:46 -0300
+Processing by DisciplinasController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/index.html.erb within layouts/application
+  [1m[36mDisciplina Load (0.1ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas"[0m
+  ↳ app/views/disciplinas/index.html.erb:6
+  Rendered disciplinas/index.html.erb within layouts/application (Duration: 10.8ms | Allocations: 850)
+  Rendered layout layouts/application.html.erb (Duration: 58.9ms | Allocations: 3039)
+Completed 200 OK in 70ms (Views: 69.4ms | ActiveRecord: 0.1ms | Allocations: 3313)
+
+
+Started GET "/alunos/1" for 127.0.0.1 at 2022-10-17 12:46:28 -0300
+Processing by AlunosController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAluno Load (0.3ms)[0m  [1m[34mSELECT "alunos".* FROM "alunos" WHERE "alunos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/alunos_controller.rb:63:in `set_aluno'
+Completed 404 Not Found in 52ms (ActiveRecord: 2.1ms | Allocations: 4195)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Aluno with 'id'=1):
+  
+app/controllers/alunos_controller.rb:63:in `set_aluno'
+Started GET "/alunos" for 127.0.0.1 at 2022-10-17 12:46:43 -0300
+Processing by AlunosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering alunos/index.html.erb within layouts/application
+  [1m[36mAluno Load (3.5ms)[0m  [1m[34mSELECT "alunos".* FROM "alunos"[0m
+  ↳ app/views/alunos/index.html.erb:6
+  Rendered alunos/index.html.erb within layouts/application (Duration: 12.2ms | Allocations: 1310)
+  Rendered layout layouts/application.html.erb (Duration: 41.7ms | Allocations: 3904)
+Completed 200 OK in 62ms (Views: 56.5ms | ActiveRecord: 3.5ms | Allocations: 4796)
+
+
+Started GET "/alunos/new" for 127.0.0.1 at 2022-10-17 12:46:45 -0300
+Processing by AlunosController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering alunos/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.3ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/alunos/_form.html.erb:20
+  Rendered alunos/_form.html.erb (Duration: 48.6ms | Allocations: 2289)
+  Rendered alunos/new.html.erb within layouts/application (Duration: 52.8ms | Allocations: 2573)
+  Rendered layout layouts/application.html.erb (Duration: 66.2ms | Allocations: 4755)
+Completed 200 OK in 89ms (Views: 72.8ms | ActiveRecord: 0.3ms | Allocations: 6195)
+
+
+Started GET "/disciplinas" for 127.0.0.1 at 2022-10-17 12:46:53 -0300
+Processing by DisciplinasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/index.html.erb within layouts/application
+  [1m[36mDisciplina Load (6.4ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas"[0m
+  ↳ app/views/disciplinas/index.html.erb:6
+  Rendered disciplinas/index.html.erb within layouts/application (Duration: 15.5ms | Allocations: 1298)
+  Rendered layout layouts/application.html.erb (Duration: 36.0ms | Allocations: 3693)
+Completed 200 OK in 48ms (Views: 40.3ms | ActiveRecord: 6.4ms | Allocations: 4352)
+
+
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 12:46:55 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  Rendered disciplinas/_form.html.erb (Duration: 43.7ms | Allocations: 3609)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 53.3ms | Allocations: 3869)
+  Rendered layout layouts/application.html.erb (Duration: 53.7ms | Allocations: 3948)
+Completed 500 Internal Server Error in 60ms (ActiveRecord: 0.0ms | Allocations: 4307)
+
+
+  
+ActionView::Template::Error (undefined method `delete' for :ano:Symbol
+
+          @object = retrieve_object(options.delete(:object))
+                                           ^^^^^^^):
+    23: 
+    24:   <div>
+    25:     <%= form.label :turma_id, style: "display: block" %>
+    26:     <%= collection_select(:disciplina, :turma_id, Turma.all, :id, :letra, :ano, :anoLetivo) %>
+    27:   </div>
+    28: 
+    29:   <div>
+  
+app/views/disciplinas/_form.html.erb:26
+app/views/disciplinas/_form.html.erb:1
+app/views/disciplinas/new.html.erb:3
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 12:48:25 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  Rendered disciplinas/_form.html.erb (Duration: 19.5ms | Allocations: 2289)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 22.8ms | Allocations: 2579)
+  Rendered layout layouts/application.html.erb (Duration: 24.1ms | Allocations: 2664)
+Completed 500 Internal Server Error in 43ms (ActiveRecord: 0.0ms | Allocations: 3473)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 3, expected 5..7)):
+    23: 
+    24:   <div>
+    25:     <%= form.label :turma_id, style: "display: block" %>
+    26:     <%= collection_select(:disciplina, :turma_id, Turma.all) %>
+    27:   </div>
+    28: 
+    29:   <div>
+  
+app/views/disciplinas/_form.html.erb:26
+app/views/disciplinas/_form.html.erb:1
+app/views/disciplinas/new.html.erb:3
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 12:49:28 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  Rendered disciplinas/_form.html.erb (Duration: 16.2ms | Allocations: 2285)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 19.3ms | Allocations: 2575)
+  Rendered layout layouts/application.html.erb (Duration: 22.5ms | Allocations: 2660)
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 0.0ms | Allocations: 3490)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 4, expected 5..7)):
+    23: 
+    24:   <div>
+    25:     <%= form.label :turma_id, style: "display: block" %>
+    26:     <%= collection_select(:disciplina, :turma_id, Turma.all, :id) %>
+    27:   </div>
+    28: 
+    29:   <div>
+  
+app/views/disciplinas/_form.html.erb:26
+app/views/disciplinas/_form.html.erb:1
+app/views/disciplinas/new.html.erb:3
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 12:50:41 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:26
+  Rendered disciplinas/_form.html.erb (Duration: 87.3ms | Allocations: 7548)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 92.0ms | Allocations: 7835)
+  Rendered layout layouts/application.html.erb (Duration: 98.6ms | Allocations: 7920)
+Completed 500 Internal Server Error in 109ms (ActiveRecord: 0.2ms | Allocations: 8741)
+
+
+  
+ActionView::Template::Error (undefined method `nome' for #<Turma id: 1, letra: "A", ano: 5, anoLetivo: 2022, created_at: "2022-10-17 15:23:29.308200000 +0000", updated_at: "2022-10-17 15:23:29.308200000 +0000">):
+    23: 
+    24:   <div>
+    25:     <%= form.label :turma_id, style: "display: block" %>
+    26:     <%= collection_select(:disciplina, :turma_id, Turma.all, :id, :nome) %>
+    27:   </div>
+    28: 
+    29:   <div>
+  
+app/views/disciplinas/_form.html.erb:26
+app/views/disciplinas/_form.html.erb:1
+app/views/disciplinas/new.html.erb:3
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 12:51:03 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  Rendered disciplinas/_form.html.erb (Duration: 11.3ms | Allocations: 1458)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 14.6ms | Allocations: 1749)
+  Rendered layout layouts/application.html.erb (Duration: 14.9ms | Allocations: 1835)
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 0.0ms | Allocations: 2674)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <%= form_with(model: disciplina) do |form| %>
+  <% if disciplina.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(disciplina.errors.count, "error") %> prohibited this disciplina from being saved:</h2>
+
+      <ul>
+        <% disciplina.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nome, style: "display: block" %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div>
+    <%= form.label :anoLetivo, style: "display: block" %>
+    <%= form.number_field :anoLetivo %>
+  </div>
+
+  <div>
+    <%= form.label :turma_id, style: "display: block" %>
+    <%= collection_select(:disciplina, :turma_id, Turma.all, :id, :letra:ano) %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+):
+1:    <%= form_with(model: disciplina) do |form| %>
+2:      <% if disciplina.errors.any? %>
+3:        <div style="color: red">
+4:          <h2><%= pluralize(disciplina.errors.count, "error") %> prohibited this disciplina from being saved:</h2>
+5:    
+6:          <ul>
+7:            <% disciplina.errors.each do |error| %>
+8:              <li><%= error.full_message %></li>
+9:            <% end %>
+10:          </ul>
+11:        </div>
+12:      <% end %>
+13:    
+14:      <div>
+15:        <%= form.label :nome, style: "display: block" %>
+16:        <%= form.text_field :nome %>
+17:      </div>
+18:    
+19:      <div>
+20:        <%= form.label :anoLetivo, style: "display: block" %>
+21:        <%= form.number_field :anoLetivo %>
+22:      </div>
+23:    
+24:      <div>
+25:        <%= form.label :turma_id, style: "display: block" %>
+26:        <%= collection_select(:disciplina, :turma_id, Turma.all, :id, :letra:ano) %>
+27:      </div>
+28:    
+29:      <div>
+30:        <%= form.submit %>
+31:      </div>
+32:    <% end %>
+  
+app/views/disciplinas/_form.html.erb:26: syntax error, unexpected ':', expecting ')'
+app/views/disciplinas/_form.html.erb:34: syntax error, unexpected `end', expecting end-of-input
+app/views/disciplinas/_form.html.erb:26: syntax error, unexpected ':', expecting ')'
+app/views/disciplinas/_form.html.erb:34: syntax error, unexpected `end', expecting end-of-input
+app/views/disciplinas/_form.html.erb:26: syntax error, unexpected ':', expecting ')'
+app/views/disciplinas/_form.html.erb:34: syntax error, unexpected `end', expecting end-of-input
+app/views/disciplinas/_form.html.erb:26: syntax error, unexpected ':', expecting ')'
+app/views/disciplinas/_form.html.erb:34: syntax error, unexpected `end', expecting end-of-input
+app/views/disciplinas/_form.html.erb:26: syntax error, unexpected ':', expecting ')'
+app/views/disciplinas/_form.html.erb:34: syntax error, unexpected `end', expecting end-of-input
+app/views/disciplinas/_form.html.erb:26: syntax error, unexpected ':', expecting ')'
+app/views/disciplinas/_form.html.erb:34: syntax error, unexpected `end', expecting end-of-input
+app/views/disciplinas/new.html.erb:3
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 12:51:34 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:26
+  Rendered disciplinas/_form.html.erb (Duration: 25.3ms | Allocations: 2627)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 34.1ms | Allocations: 2952)
+  Rendered layout layouts/application.html.erb (Duration: 53.5ms | Allocations: 5516)
+Completed 200 OK in 61ms (Views: 59.2ms | ActiveRecord: 0.2ms | Allocations: 6369)
+
+
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 12:52:00 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:26
+  Rendered disciplinas/_form.html.erb (Duration: 82.3ms | Allocations: 7511)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 91.5ms | Allocations: 7798)
+  Rendered layout layouts/application.html.erb (Duration: 92.0ms | Allocations: 7883)
+Completed 500 Internal Server Error in 104ms (ActiveRecord: 0.2ms | Allocations: 8710)
+
+
+  
+ActionView::Template::Error (undefined method `turma_id' for #<Turma id: 1, letra: "A", ano: 5, anoLetivo: 2022, created_at: "2022-10-17 15:23:29.308200000 +0000", updated_at: "2022-10-17 15:23:29.308200000 +0000">):
+    23: 
+    24:   <div>
+    25:     <%= form.label :turma_id, style: "display: block" %>
+    26:     <%= collection_select(:disciplina, :turma_id, Turma.all, :id, :turma_id) %>
+    27:   </div>
+    28: 
+    29:   <div>
+  
+app/views/disciplinas/_form.html.erb:26
+app/views/disciplinas/_form.html.erb:1
+app/views/disciplinas/new.html.erb:3
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 12:52:25 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:26
+  Rendered disciplinas/_form.html.erb (Duration: 72.8ms | Allocations: 7509)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 79.2ms | Allocations: 7796)
+  Rendered layout layouts/application.html.erb (Duration: 79.7ms | Allocations: 7881)
+Completed 500 Internal Server Error in 89ms (ActiveRecord: 0.2ms | Allocations: 8702)
+
+
+  
+ActionView::Template::Error (undefined method `turma' for #<Turma id: 1, letra: "A", ano: 5, anoLetivo: 2022, created_at: "2022-10-17 15:23:29.308200000 +0000", updated_at: "2022-10-17 15:23:29.308200000 +0000">):
+    23: 
+    24:   <div>
+    25:     <%= form.label :turma_id, style: "display: block" %>
+    26:     <%= collection_select(:disciplina, :turma_id, Turma.all, :id, :turma) %>
+    27:   </div>
+    28: 
+    29:   <div>
+  
+app/views/disciplinas/_form.html.erb:26
+app/views/disciplinas/_form.html.erb:1
+app/views/disciplinas/new.html.erb:3
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 12:58:49 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.3ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:27:in `collect'
+  Rendered disciplinas/_form.html.erb (Duration: 103.8ms | Allocations: 8872)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 109.3ms | Allocations: 9210)
+  Rendered layout layouts/application.html.erb (Duration: 136.4ms | Allocations: 11810)
+Completed 200 OK in 152ms (Views: 149.6ms | ActiveRecord: 10.4ms | Allocations: 12665)
+
+
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 12:59:19 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:27:in `collect'
+  Rendered disciplinas/_form.html.erb (Duration: 27.7ms | Allocations: 2625)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 31.2ms | Allocations: 2947)
+  Rendered layout layouts/application.html.erb (Duration: 50.4ms | Allocations: 5496)
+Completed 200 OK in 68ms (Views: 66.3ms | ActiveRecord: 0.2ms | Allocations: 6383)
+
+
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:00:05 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:27:in `collect'
+  Rendered disciplinas/_form.html.erb (Duration: 29.9ms | Allocations: 2620)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 31.5ms | Allocations: 2942)
+  Rendered layout layouts/application.html.erb (Duration: 51.6ms | Allocations: 5491)
+Completed 200 OK in 59ms (Views: 56.4ms | ActiveRecord: 0.2ms | Allocations: 6347)
+
+
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:00:36 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:27:in `collect'
+  Rendered disciplinas/_form.html.erb (Duration: 18.4ms | Allocations: 2604)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 24.1ms | Allocations: 2926)
+  Rendered layout layouts/application.html.erb (Duration: 41.1ms | Allocations: 5475)
+Completed 200 OK in 50ms (Views: 48.3ms | ActiveRecord: 0.2ms | Allocations: 6331)
+
+
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:04:48 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (4.3ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:27:in `collect'
+  Rendered disciplinas/_form.html.erb (Duration: 31.1ms | Allocations: 2622)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 39.5ms | Allocations: 2944)
+  Rendered layout layouts/application.html.erb (Duration: 57.9ms | Allocations: 5493)
+Completed 200 OK in 72ms (Views: 66.3ms | ActiveRecord: 4.3ms | Allocations: 6349)
+
+
+Started GET "/turma" for 127.0.0.1 at 2022-10-17 13:04:58 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/turma"):
+  
+Started GET "/turmas" for 127.0.0.1 at 2022-10-17 13:05:03 -0300
+Processing by TurmasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering turmas/index.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/turmas/index.html.erb:6
+  Rendered turmas/_turma.html.erb (Duration: 1.2ms | Allocations: 200)
+  Rendered turmas/index.html.erb within layouts/application (Duration: 21.1ms | Allocations: 1725)
+  Rendered layout layouts/application.html.erb (Duration: 40.5ms | Allocations: 4119)
+Completed 200 OK in 51ms (Views: 49.3ms | ActiveRecord: 0.2ms | Allocations: 4798)
+
+
+Started GET "/disciplinas" for 127.0.0.1 at 2022-10-17 13:05:15 -0300
+Processing by DisciplinasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/index.html.erb within layouts/application
+  [1m[36mDisciplina Load (0.2ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas"[0m
+  ↳ app/views/disciplinas/index.html.erb:6
+  Rendered disciplinas/index.html.erb within layouts/application (Duration: 18.8ms | Allocations: 1097)
+  Rendered layout layouts/application.html.erb (Duration: 46.7ms | Allocations: 3279)
+Completed 200 OK in 52ms (Views: 50.0ms | ActiveRecord: 0.2ms | Allocations: 3648)
+
+
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:05:17 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:27:in `collect'
+  Rendered disciplinas/_form.html.erb (Duration: 19.0ms | Allocations: 1986)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 19.4ms | Allocations: 2074)
+  Rendered layout layouts/application.html.erb (Duration: 28.8ms | Allocations: 4256)
+Completed 200 OK in 40ms (Views: 39.3ms | ActiveRecord: 0.2ms | Allocations: 4533)
+
+
+Started POST "/disciplinas" for 127.0.0.1 at 2022-10-17 13:05:28 -0300
+Processing by DisciplinasController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "disciplina"=>{"nome"=>"Ingles", "anoLetivo"=>"2022", "turma_id"=>"2022"}, "commit"=>"Create Disciplina"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 2022], ["LIMIT", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:27:in `collect'
+  Rendered disciplinas/_form.html.erb (Duration: 32.7ms | Allocations: 2177)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 33.2ms | Allocations: 2264)
+  Rendered layout layouts/application.html.erb (Duration: 63.9ms | Allocations: 4453)
+Completed 422 Unprocessable Entity in 155ms (Views: 65.6ms | ActiveRecord: 0.7ms | Allocations: 7743)
+
+
+Started POST "/disciplinas" for 127.0.0.1 at 2022-10-17 13:05:45 -0300
+Processing by DisciplinasController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "disciplina"=>{"nome"=>"Ingles", "anoLetivo"=>"2022", "turma_id"=>"2022"}, "commit"=>"Create Disciplina"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 2022], ["LIMIT", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:27:in `collect'
+  Rendered disciplinas/_form.html.erb (Duration: 23.3ms | Allocations: 2065)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 29.5ms | Allocations: 2152)
+  Rendered layout layouts/application.html.erb (Duration: 41.9ms | Allocations: 4326)
+Completed 422 Unprocessable Entity in 88ms (Views: 51.8ms | ActiveRecord: 0.5ms | Allocations: 7435)
+
+
+Started POST "/disciplinas" for 127.0.0.1 at 2022-10-17 13:05:47 -0300
+Processing by DisciplinasController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "disciplina"=>{"nome"=>"Ingles", "anoLetivo"=>"2022", "turma_id"=>"2022"}, "commit"=>"Create Disciplina"}
+  [1m[36mTRANSACTION (4.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTurma Load (0.1ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 2022], ["LIMIT", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:27:in `collect'
+  Rendered disciplinas/_form.html.erb (Duration: 25.9ms | Allocations: 2065)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 26.4ms | Allocations: 2152)
+  Rendered layout layouts/application.html.erb (Duration: 41.2ms | Allocations: 4326)
+Completed 422 Unprocessable Entity in 82ms (Views: 42.3ms | ActiveRecord: 4.6ms | Allocations: 7443)
+
+
+Started POST "/disciplinas" for 127.0.0.1 at 2022-10-17 13:08:35 -0300
+Processing by DisciplinasController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "disciplina"=>{"nome"=>"Ingles", "anoLetivo"=>"2022", "turma_id"=>"2022"}, "commit"=>"Create Disciplina"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTurma Load (0.1ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 2022], ["LIMIT", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:27:in `collect'
+  Rendered disciplinas/_form.html.erb (Duration: 46.0ms | Allocations: 2720)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 47.9ms | Allocations: 3045)
+  Rendered layout layouts/application.html.erb (Duration: 99.4ms | Allocations: 5583)
+Completed 422 Unprocessable Entity in 162ms (Views: 119.3ms | ActiveRecord: 0.6ms | Allocations: 9263)
+
+
+Started POST "/disciplinas" for 127.0.0.1 at 2022-10-17 13:08:37 -0300
+Processing by DisciplinasController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "disciplina"=>{"nome"=>"Ingles", "anoLetivo"=>"2022", "turma_id"=>"A"}, "commit"=>"Create Disciplina"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:27:in `collect'
+  Rendered disciplinas/_form.html.erb (Duration: 28.9ms | Allocations: 2063)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 38.2ms | Allocations: 2150)
+  Rendered layout layouts/application.html.erb (Duration: 49.4ms | Allocations: 4331)
+Completed 422 Unprocessable Entity in 103ms (Views: 60.4ms | ActiveRecord: 0.5ms | Allocations: 7637)
+
+
+Started POST "/disciplinas" for 127.0.0.1 at 2022-10-17 13:08:38 -0300
+Processing by DisciplinasController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "disciplina"=>{"nome"=>"Ingles", "anoLetivo"=>"2022", "turma_id"=>"A"}, "commit"=>"Create Disciplina"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:27:in `collect'
+  Rendered disciplinas/_form.html.erb (Duration: 30.1ms | Allocations: 2063)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 37.0ms | Allocations: 2150)
+  Rendered layout layouts/application.html.erb (Duration: 56.7ms | Allocations: 4332)
+Completed 422 Unprocessable Entity in 104ms (Views: 68.4ms | ActiveRecord: 0.5ms | Allocations: 7441)
+
+
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:09:16 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:26
+  Rendered disciplinas/_form.html.erb (Duration: 198.0ms | Allocations: 2657)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 205.8ms | Allocations: 2979)
+  Rendered layout layouts/application.html.erb (Duration: 420.7ms | Allocations: 5528)
+Completed 200 OK in 440ms (Views: 436.0ms | ActiveRecord: 0.2ms | Allocations: 6355)
+
+
+Started POST "/disciplinas" for 127.0.0.1 at 2022-10-17 13:09:18 -0300
+Processing by DisciplinasController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "disciplina"=>{"nome"=>"Ingles", "anoLetivo"=>"2022", "turma_id"=>"1"}, "commit"=>"Create Disciplina"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mDisciplina Create (1.0ms)[0m  [1m[32mINSERT INTO "disciplinas" ("nome", "anoLetivo", "turma_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["nome", "Ingles"], ["anoLetivo", 2022], ["turma_id", 1], ["created_at", "2022-10-17 16:09:18.891279"], ["updated_at", "2022-10-17 16:09:18.891279"]]
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (14.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+Redirected to http://127.0.0.1:3000/disciplinas/2
+Completed 302 Found in 55ms (ActiveRecord: 15.9ms | Allocations: 3472)
+
+
+Started GET "/disciplinas/2" for 127.0.0.1 at 2022-10-17 13:09:18 -0300
+Processing by DisciplinasController#show as TURBO_STREAM
+  Parameters: {"id"=>"2"}
+  [1m[36mDisciplina Load (0.2ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas" WHERE "disciplinas"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:63:in `set_disciplina'
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/show.html.erb within layouts/application
+  [1m[36mTurma Load (0.3ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/disciplinas/_disciplina.html.erb:13
+  Rendered disciplinas/_disciplina.html.erb (Duration: 16.9ms | Allocations: 852)
+  Rendered disciplinas/show.html.erb within layouts/application (Duration: 39.8ms | Allocations: 1853)
+  Rendered layout layouts/application.html.erb (Duration: 66.5ms | Allocations: 4042)
+Completed 200 OK in 76ms (Views: 72.2ms | ActiveRecord: 0.5ms | Allocations: 4948)
+
+
+Started GET "/disciplinas/2" for 127.0.0.1 at 2022-10-17 13:13:44 -0300
+Processing by DisciplinasController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDisciplina Load (0.2ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas" WHERE "disciplinas"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:63:in `set_disciplina'
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/show.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/disciplinas/_disciplina.html.erb:13
+  Rendered disciplinas/_disciplina.html.erb (Duration: 12.2ms | Allocations: 985)
+  Rendered disciplinas/show.html.erb within layouts/application (Duration: 25.0ms | Allocations: 2065)
+  Rendered layout layouts/application.html.erb (Duration: 46.4ms | Allocations: 4603)
+Completed 200 OK in 78ms (Views: 60.3ms | ActiveRecord: 0.4ms | Allocations: 5914)
+
+
+Started GET "/disciplinas" for 127.0.0.1 at 2022-10-17 13:13:49 -0300
+Processing by DisciplinasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/index.html.erb within layouts/application
+  [1m[36mDisciplina Load (0.2ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas"[0m
+  ↳ app/views/disciplinas/index.html.erb:6
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/disciplinas/_disciplina.html.erb:13
+  Rendered disciplinas/_disciplina.html.erb (Duration: 10.1ms | Allocations: 684)
+  Rendered disciplinas/index.html.erb within layouts/application (Duration: 27.9ms | Allocations: 1851)
+  Rendered layout layouts/application.html.erb (Duration: 60.2ms | Allocations: 4034)
+Completed 200 OK in 73ms (Views: 71.3ms | ActiveRecord: 0.4ms | Allocations: 4401)
+
+
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:13:51 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  Rendered disciplinas/_form.html.erb (Duration: 20.7ms | Allocations: 1458)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 23.3ms | Allocations: 1712)
+  Rendered layout layouts/application.html.erb (Duration: 27.5ms | Allocations: 1792)
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 0.0ms | Allocations: 2102)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <%= form_with(model: disciplina) do |form| %>
+  <% if disciplina.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(disciplina.errors.count, "error") %> prohibited this disciplina from being saved:</h2>
+
+      <ul>
+        <% disciplina.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nome, style: "display: block" %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div>
+    <%= form.label :anoLetivo, style: "display: block" %>
+    <%= form.number_field :anoLetivo %>
+  </div>
+
+  <div>
+    <%= form.label :turma_id, style: "display: block" %>
+    <%= collection_select(:disciplina, :turma_id, Turma.all, :id, (:letra, :ano)) %>
+    <%#= select(:disciplina, :turma_id, Turma.all.collect {|t| [t.letra]}) %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+):
+1:    <%= form_with(model: disciplina) do |form| %>
+2:      <% if disciplina.errors.any? %>
+3:        <div style="color: red">
+4:          <h2><%= pluralize(disciplina.errors.count, "error") %> prohibited this disciplina from being saved:</h2>
+5:    
+6:          <ul>
+7:            <% disciplina.errors.each do |error| %>
+8:              <li><%= error.full_message %></li>
+9:            <% end %>
+10:          </ul>
+11:        </div>
+12:      <% end %>
+13:    
+14:      <div>
+15:        <%= form.label :nome, style: "display: block" %>
+16:        <%= form.text_field :nome %>
+17:      </div>
+18:    
+19:      <div>
+20:        <%= form.label :anoLetivo, style: "display: block" %>
+21:        <%= form.number_field :anoLetivo %>
+22:      </div>
+23:    
+24:      <div>
+25:        <%= form.label :turma_id, style: "display: block" %>
+26:        <%= collection_select(:disciplina, :turma_id, Turma.all, :id, (:letra, :ano)) %>
+27:        <%#= select(:disciplina, :turma_id, Turma.all.collect {|t| [t.letra]}) %>
+28:      </div>
+29:    
+30:      <div>
+31:        <%= form.submit %>
+32:      </div>
+33:    <% end %>
+  
+app/views/disciplinas/_form.html.erb:26: syntax error, unexpected ',', expecting ')'
+app/views/disciplinas/_form.html.erb:26: syntax error, unexpected ',', expecting ')'
+app/views/disciplinas/_form.html.erb:26: syntax error, unexpected ',', expecting ')'
+app/views/disciplinas/_form.html.erb:26: syntax error, unexpected ',', expecting ')'
+app/views/disciplinas/_form.html.erb:26: syntax error, unexpected ',', expecting ')'
+app/views/disciplinas/_form.html.erb:26: syntax error, unexpected ',', expecting ')'
+app/views/disciplinas/new.html.erb:3
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:14:42 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:26
+  Rendered disciplinas/_form.html.erb (Duration: 27.1ms | Allocations: 2653)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 30.2ms | Allocations: 2975)
+  Rendered layout layouts/application.html.erb (Duration: 49.7ms | Allocations: 5539)
+Completed 200 OK in 64ms (Views: 62.5ms | ActiveRecord: 0.2ms | Allocations: 6364)
+
+
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:15:55 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:26
+  Rendered disciplinas/_form.html.erb (Duration: 27.2ms | Allocations: 3038)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 32.4ms | Allocations: 3325)
+  Rendered layout layouts/application.html.erb (Duration: 33.3ms | Allocations: 3410)
+Completed 500 Internal Server Error in 45ms (ActiveRecord: 0.2ms | Allocations: 4239)
+
+
+  
+ActionView::Template::Error ([:ano, :letra] is not a symbol nor a string):
+    23: 
+    24:   <div>
+    25:     <%= form.label :turma_id, style: "display: block" %>
+    26:     <%= collection_select(:disciplina, :turma_id, Turma.all, :id, [:ano, :letra]) %>
+    27:     <%#= select(:disciplina, :turma_id, Turma.all.collect {|t| [t.letra]}) %>
+    28:   </div>
+    29: 
+  
+app/views/disciplinas/_form.html.erb:26
+app/views/disciplinas/_form.html.erb:1
+app/views/disciplinas/new.html.erb:3
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:16:23 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.3ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:26
+  Rendered disciplinas/_form.html.erb (Duration: 29.1ms | Allocations: 3032)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 36.6ms | Allocations: 3319)
+  Rendered layout layouts/application.html.erb (Duration: 37.0ms | Allocations: 3404)
+Completed 500 Internal Server Error in 49ms (ActiveRecord: 0.3ms | Allocations: 4225)
+
+
+  
+ActionView::Template::Error ([:ano] is not a symbol nor a string):
+    23: 
+    24:   <div>
+    25:     <%= form.label :turma_id, style: "display: block" %>
+    26:     <%= collection_select(:disciplina, :turma_id, Turma.all, :id, [:ano]) %>
+    27:     <%#= select(:disciplina, :turma_id, Turma.all.collect {|t| [t.letra]}) %>
+    28:   </div>
+    29: 
+  
+app/views/disciplinas/_form.html.erb:26
+app/views/disciplinas/_form.html.erb:1
+app/views/disciplinas/new.html.erb:3
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:17:00 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:26
+  [1m[36mTurma Load (0.4ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" /* loading for inspect */ LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/views/disciplinas/_form.html.erb:26
+  Rendered disciplinas/_form.html.erb (Duration: 41.2ms | Allocations: 3911)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 55.6ms | Allocations: 4198)
+  Rendered layout layouts/application.html.erb (Duration: 56.3ms | Allocations: 4283)
+Completed 500 Internal Server Error in 67ms (ActiveRecord: 0.6ms | Allocations: 5104)
+
+
+  
+ActionView::Template::Error (#<ActiveRecord::Relation [#<Turma id: 1, letra: "A", ano: 5, anoLetivo: 2022, created_at: "2022-10-17 15:23:29.308200000 +0000", updated_at: "2022-10-17 15:23:29.308200000 +0000">]> is not a symbol nor a string):
+    23: 
+    24:   <div>
+    25:     <%= form.label :turma_id, style: "display: block" %>
+    26:     <%= collection_select(:disciplina, :turma_id, Turma.all, :id, Turma.all) %>
+    27:     <%#= select(:disciplina, :turma_id, Turma.all.collect {|t| [t.letra]}) %>
+    28:   </div>
+    29: 
+  
+app/views/disciplinas/_form.html.erb:26
+app/views/disciplinas/_form.html.erb:1
+app/views/disciplinas/new.html.erb:3
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:17:17 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  Rendered disciplinas/_form.html.erb (Duration: 49.8ms | Allocations: 6047)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 58.7ms | Allocations: 6337)
+  Rendered layout layouts/application.html.erb (Duration: 59.5ms | Allocations: 6422)
+Completed 500 Internal Server Error in 71ms (ActiveRecord: 0.0ms | Allocations: 7250)
+
+
+  
+ActionView::Template::Error (undefined method `id' for Turma:Class
+Did you mean?  ids):
+    23: 
+    24:   <div>
+    25:     <%= form.label :turma_id, style: "display: block" %>
+    26:     <%= collection_select(:disciplina, :turma_id, Turma.all, :id, Turma.id) %>
+    27:     <%#= select(:disciplina, :turma_id, Turma.all.collect {|t| [t.letra]}) %>
+    28:   </div>
+    29: 
+  
+app/views/disciplinas/_form.html.erb:26
+app/views/disciplinas/_form.html.erb:1
+app/views/disciplinas/new.html.erb:3
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:17:48 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  Rendered disciplinas/_form.html.erb (Duration: 31.5ms | Allocations: 3580)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 41.7ms | Allocations: 3870)
+  Rendered layout layouts/application.html.erb (Duration: 42.7ms | Allocations: 3955)
+Completed 500 Internal Server Error in 61ms (ActiveRecord: 0.0ms | Allocations: 4785)
+
+
+  
+ActionView::Template::Error (undefined method `letra' for :turma:Symbol
+
+    '.freeze;@output_buffer.append=( collection_select(:disciplina, :turma_id, Turma.all, :id, :turma.letra) );@output_buffer.safe_append='
+                                                                                                     ^^^^^^):
+    23: 
+    24:   <div>
+    25:     <%= form.label :turma_id, style: "display: block" %>
+    26:     <%= collection_select(:disciplina, :turma_id, Turma.all, :id, :turma.letra) %>
+    27:     <%#= select(:disciplina, :turma_id, Turma.all.collect {|t| [t.letra]}) %>
+    28:   </div>
+    29: 
+  
+app/views/disciplinas/_form.html.erb:26
+app/views/disciplinas/_form.html.erb:1
+app/views/disciplinas/new.html.erb:3
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:18:06 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  Rendered disciplinas/_form.html.erb (Duration: 79.3ms | Allocations: 6478)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 86.0ms | Allocations: 6769)
+  Rendered layout layouts/application.html.erb (Duration: 86.8ms | Allocations: 6854)
+Completed 500 Internal Server Error in 128ms (ActiveRecord: 0.0ms | Allocations: 7686)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `turma' for #<ActionView::Base:0x00000000010e28>
+
+    '.freeze;@output_buffer.append=( collection_select(:disciplina, :turma_id, Turma.all, :id, turma.letra) );@output_buffer.safe_append='
+                                                                                               ^^^^^
+Did you mean?  turma_url):
+    23: 
+    24:   <div>
+    25:     <%= form.label :turma_id, style: "display: block" %>
+    26:     <%= collection_select(:disciplina, :turma_id, Turma.all, :id, turma.letra) %>
+    27:     <%#= select(:disciplina, :turma_id, Turma.all.collect {|t| [t.letra]}) %>
+    28:   </div>
+    29: 
+  
+app/views/disciplinas/_form.html.erb:26
+app/views/disciplinas/_form.html.erb:1
+app/views/disciplinas/new.html.erb:3
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:18:35 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.3ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:26
+  Rendered disciplinas/_form.html.erb (Duration: 39.5ms | Allocations: 2660)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 44.7ms | Allocations: 2982)
+  Rendered layout layouts/application.html.erb (Duration: 99.8ms | Allocations: 5546)
+Completed 200 OK in 126ms (Views: 112.2ms | ActiveRecord: 0.3ms | Allocations: 6396)
+
+
+Started GET "/disciplinas/new" for 127.0.0.1 at 2022-10-17 13:25:00 -0300
+Processing by DisciplinasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.4ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/disciplinas/_form.html.erb:26
+  Rendered disciplinas/_form.html.erb (Duration: 103.7ms | Allocations: 5393)
+  Rendered disciplinas/new.html.erb within layouts/application (Duration: 106.6ms | Allocations: 5726)
+  Rendered layout layouts/application.html.erb (Duration: 207.1ms | Allocations: 19667)
+Completed 200 OK in 246ms (Views: 213.6ms | ActiveRecord: 1.2ms | Allocations: 23243)
+
+
+Started POST "/disciplinas" for 127.0.0.1 at 2022-10-17 13:25:26 -0300
+Processing by DisciplinasController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "disciplina"=>{"nome"=>"Português", "anoLetivo"=>"2022", "turma_id"=>"1"}, "commit"=>"Create Disciplina"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTurma Load (0.3ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mDisciplina Create (0.4ms)[0m  [1m[32mINSERT INTO "disciplinas" ("nome", "anoLetivo", "turma_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["nome", "Português"], ["anoLetivo", 2022], ["turma_id", 1], ["created_at", "2022-10-17 16:25:26.255084"], ["updated_at", "2022-10-17 16:25:26.255084"]]
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (25.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/disciplinas_controller.rb:27:in `block in create'
+Redirected to http://127.0.0.1:3000/disciplinas/3
+Completed 302 Found in 97ms (ActiveRecord: 26.4ms | Allocations: 5057)
+
+
+Started GET "/disciplinas/3" for 127.0.0.1 at 2022-10-17 13:25:26 -0300
+Processing by DisciplinasController#show as TURBO_STREAM
+  Parameters: {"id"=>"3"}
+  [1m[36mDisciplina Load (0.2ms)[0m  [1m[34mSELECT "disciplinas".* FROM "disciplinas" WHERE "disciplinas"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/disciplinas_controller.rb:63:in `set_disciplina'
+  Rendering layout layouts/application.html.erb
+  Rendering disciplinas/show.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/disciplinas/_disciplina.html.erb:13
+  Rendered disciplinas/_disciplina.html.erb (Duration: 18.8ms | Allocations: 857)
+  Rendered disciplinas/show.html.erb within layouts/application (Duration: 32.4ms | Allocations: 1893)
+  Rendered layout layouts/application.html.erb (Duration: 53.1ms | Allocations: 4068)
+Completed 200 OK in 75ms (Views: 60.1ms | ActiveRecord: 0.4ms | Allocations: 5649)
+
+

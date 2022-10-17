@@ -23,7 +23,8 @@
 
   <div>
     <%= form.label :turma_id, style: "display: block" %>
-    <%= collection_select(:disciplina, :turma_id, Turma.all, :id, :letra) %>
+    <%= collection_select(:disciplina, :turma_id, Turma.all, :id, :turma_completa) %>
+    <%#= select(:disciplina, :turma_id, Turma.all.collect {|t| [t.letra]}) %>
   </div>
 
   <div>
