@@ -149,3 +149,232 @@ Processing by AlunosController#new as HTML
 Completed 200 OK in 163ms (Views: 110.3ms | ActiveRecord: 1.2ms | Allocations: 10960)
 
 
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (16.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (21.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAlunos (20221017031127)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "alunos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nome" varchar, "turma_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_952067d150"
+FOREIGN KEY ("turma_id")
+  REFERENCES "turmas" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_alunos_on_turma_id" ON "alunos" ("turma_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (8.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031127"]]
+  [1m[36mTRANSACTION (18.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAtividades (20221017031225)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "atividades" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "bimestre" integer, "descricao" varchar, "data" date, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031225"]]
+  [1m[36mTRANSACTION (19.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAvaliacaos (20221017031259)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "avaliacaos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "pontos" float, "observacoes" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031259"]]
+  [1m[36mTRANSACTION (25.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateDisciplinas (20221017031405)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "disciplinas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nome" varchar, "anoLetivo" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031405"]]
+  [1m[36mTRANSACTION (17.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateTurmas (20221017031441)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "letra" varchar, "ano" integer, "anoLetivo" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031441"]]
+  [1m[36mTRANSACTION (33.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-10-17 14:09:50.139454"], ["updated_at", "2022-10-17 14:09:50.139454"]]
+  [1m[36mTRANSACTION (14.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2022-10-17 11:10:52 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/es/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/es/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 10.1ms | Allocations: 526)
+Completed 200 OK in 79ms (Views: 28.6ms | ActiveRecord: 0.0ms | Allocations: 3825)
+
+
+Started GET "/alunos" for 127.0.0.1 at 2022-10-17 11:10:59 -0300
+Processing by AlunosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering alunos/index.html.erb within layouts/application
+  [1m[36mAluno Load (0.3ms)[0m  [1m[34mSELECT "alunos".* FROM "alunos"[0m
+  ↳ app/views/alunos/index.html.erb:6
+  Rendered alunos/index.html.erb within layouts/application (Duration: 38.9ms | Allocations: 1616)
+  Rendered layout layouts/application.html.erb (Duration: 285.6ms | Allocations: 35556)
+Completed 200 OK in 344ms (Views: 295.8ms | ActiveRecord: 0.3ms | Allocations: 39866)
+
+
+Started GET "/alunos/new" for 127.0.0.1 at 2022-10-17 11:11:01 -0300
+Processing by AlunosController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering alunos/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.3ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/alunos/_form.html.erb:20
+  Rendered alunos/_form.html.erb (Duration: 51.4ms | Allocations: 5407)
+  Rendered alunos/new.html.erb within layouts/application (Duration: 59.9ms | Allocations: 5745)
+  Rendered layout layouts/application.html.erb (Duration: 72.7ms | Allocations: 8041)
+Completed 200 OK in 129ms (Views: 81.6ms | ActiveRecord: 8.6ms | Allocations: 12332)
+
+
+Started GET "/alunos/new" for 127.0.0.1 at 2022-10-17 11:18:44 -0300
+Processing by AlunosController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering alunos/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.3ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/alunos/_form.html.erb:20
+  Rendered alunos/_form.html.erb (Duration: 17.9ms | Allocations: 1904)
+  Rendered alunos/new.html.erb within layouts/application (Duration: 18.3ms | Allocations: 1995)
+  Rendered layout layouts/application.html.erb (Duration: 37.5ms | Allocations: 4179)
+Completed 200 OK in 46ms (Views: 45.0ms | ActiveRecord: 1.0ms | Allocations: 4503)
+
+
+Started GET "/" for 127.0.0.1 at 2022-10-17 12:07:46 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/es/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/es/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 10.4ms | Allocations: 526)
+Completed 200 OK in 50ms (Views: 21.7ms | ActiveRecord: 0.0ms | Allocations: 3825)
+
+
+Started GET "/alunos" for 127.0.0.1 at 2022-10-17 12:07:54 -0300
+Processing by AlunosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering alunos/index.html.erb within layouts/application
+  [1m[36mAluno Load (0.3ms)[0m  [1m[34mSELECT "alunos".* FROM "alunos"[0m
+  ↳ app/views/alunos/index.html.erb:6
+  Rendered alunos/index.html.erb within layouts/application (Duration: 40.4ms | Allocations: 1622)
+  Rendered layout layouts/application.html.erb (Duration: 287.5ms | Allocations: 35529)
+Completed 200 OK in 340ms (Views: 300.4ms | ActiveRecord: 0.3ms | Allocations: 39839)
+
+
+Started GET "/alunos/new" for 127.0.0.1 at 2022-10-17 12:07:57 -0300
+Processing by AlunosController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering alunos/new.html.erb within layouts/application
+  [1m[36mTurma Load (2.6ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/alunos/_form.html.erb:20
+  Rendered alunos/_form.html.erb (Duration: 39.1ms | Allocations: 5306)
+  Rendered alunos/new.html.erb within layouts/application (Duration: 49.9ms | Allocations: 5644)
+  Rendered layout layouts/application.html.erb (Duration: 66.1ms | Allocations: 7940)
+Completed 200 OK in 118ms (Views: 69.3ms | ActiveRecord: 3.7ms | Allocations: 12227)
+
+
+Started GET "/turmas" for 127.0.0.1 at 2022-10-17 12:08:03 -0300
+Processing by TurmasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering turmas/index.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/turmas/index.html.erb:6
+  Rendered turmas/index.html.erb within layouts/application (Duration: 12.3ms | Allocations: 1268)
+  Rendered layout layouts/application.html.erb (Duration: 37.9ms | Allocations: 3662)
+Completed 200 OK in 46ms (Views: 44.5ms | ActiveRecord: 0.2ms | Allocations: 4538)
+
+
+Started GET "/turmas/new" for 127.0.0.1 at 2022-10-17 12:08:09 -0300
+Processing by TurmasController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering turmas/new.html.erb within layouts/application
+  Rendered turmas/_form.html.erb (Duration: 69.8ms | Allocations: 8049)
+  Rendered turmas/new.html.erb within layouts/application (Duration: 77.0ms | Allocations: 8351)
+  Rendered layout layouts/application.html.erb (Duration: 90.2ms | Allocations: 10644)
+Completed 200 OK in 231ms (Views: 94.5ms | ActiveRecord: 0.9ms | Allocations: 14164)
+
+
+Started POST "/turmas" for 127.0.0.1 at 2022-10-17 12:08:22 -0300
+Processing by TurmasController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "turma"=>{"letra"=>"A", "ano"=>"5", "anoLetivo"=>"2022"}, "commit"=>"Create Turma"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/turmas_controller.rb:27:in `block in create'
+  [1m[36mTurma Create (0.5ms)[0m  [1m[32mINSERT INTO "turmas" ("letra", "ano", "anoLetivo", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["letra", "A"], ["ano", 5], ["anoLetivo", 2022], ["created_at", "2022-10-17 15:08:22.379542"], ["updated_at", "2022-10-17 15:08:22.379542"]]
+  ↳ app/controllers/turmas_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (13.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/turmas_controller.rb:27:in `block in create'
+Redirected to http://127.0.0.1:3000/turmas/1
+Completed 302 Found in 47ms (ActiveRecord: 14.0ms | Allocations: 4082)
+
+
+Started GET "/turmas/1" for 127.0.0.1 at 2022-10-17 12:08:22 -0300
+Processing by TurmasController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mTurma Load (0.3ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/turmas_controller.rb:63:in `set_turma'
+  Rendering layout layouts/application.html.erb
+  Rendering turmas/show.html.erb within layouts/application
+  Rendered turmas/_turma.html.erb (Duration: 1.5ms | Allocations: 250)
+  Rendered turmas/show.html.erb within layouts/application (Duration: 13.5ms | Allocations: 1707)
+  Rendered layout layouts/application.html.erb (Duration: 24.7ms | Allocations: 4003)
+Completed 200 OK in 45ms (Views: 30.1ms | ActiveRecord: 0.3ms | Allocations: 6809)
+
+
+Started GET "/turmas" for 127.0.0.1 at 2022-10-17 12:08:25 -0300
+Processing by TurmasController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering turmas/index.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/turmas/index.html.erb:6
+  Rendered turmas/_turma.html.erb (Duration: 0.1ms | Allocations: 21)
+  Rendered turmas/index.html.erb within layouts/application (Duration: 8.2ms | Allocations: 1082)
+  Rendered layout layouts/application.html.erb (Duration: 16.8ms | Allocations: 3266)
+Completed 200 OK in 31ms (Views: 30.0ms | ActiveRecord: 0.2ms | Allocations: 3571)
+
+
+Started GET "/alunos" for 127.0.0.1 at 2022-10-17 12:08:30 -0300
+Processing by AlunosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering alunos/index.html.erb within layouts/application
+  [1m[36mAluno Load (0.1ms)[0m  [1m[34mSELECT "alunos".* FROM "alunos"[0m
+  ↳ app/views/alunos/index.html.erb:6
+  Rendered alunos/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 839)
+  Rendered layout layouts/application.html.erb (Duration: 20.8ms | Allocations: 3021)
+Completed 200 OK in 37ms (Views: 36.4ms | ActiveRecord: 0.1ms | Allocations: 3292)
+
+
+Started GET "/alunos/new" for 127.0.0.1 at 2022-10-17 12:08:32 -0300
+Processing by AlunosController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering alunos/new.html.erb within layouts/application
+  [1m[36mTurma Load (0.1ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas"[0m
+  ↳ app/views/alunos/_form.html.erb:20
+  Rendered alunos/_form.html.erb (Duration: 18.8ms | Allocations: 1807)
+  Rendered alunos/new.html.erb within layouts/application (Duration: 21.8ms | Allocations: 1895)
+  Rendered layout layouts/application.html.erb (Duration: 31.8ms | Allocations: 4077)
+Completed 200 OK in 41ms (Views: 40.3ms | ActiveRecord: 0.1ms | Allocations: 4356)
+
+
+Started POST "/alunos" for 127.0.0.1 at 2022-10-17 12:08:40 -0300
+Processing by AlunosController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "aluno"=>{"nome"=>"Marcos", "turma_id"=>"1"}, "commit"=>"Create Aluno"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/alunos_controller.rb:27:in `block in create'
+  [1m[36mTurma Load (0.6ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/alunos_controller.rb:27:in `block in create'
+  [1m[36mAluno Create (0.4ms)[0m  [1m[32mINSERT INTO "alunos" ("nome", "turma_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["nome", "Marcos"], ["turma_id", 1], ["created_at", "2022-10-17 15:08:40.721240"], ["updated_at", "2022-10-17 15:08:40.721240"]]
+  ↳ app/controllers/alunos_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (15.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/alunos_controller.rb:27:in `block in create'
+Redirected to http://127.0.0.1:3000/alunos/1
+Completed 302 Found in 160ms (ActiveRecord: 16.4ms | Allocations: 12573)
+
+
+Started GET "/alunos/1" for 127.0.0.1 at 2022-10-17 12:08:40 -0300
+Processing by AlunosController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mAluno Load (0.3ms)[0m  [1m[34mSELECT "alunos".* FROM "alunos" WHERE "alunos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/alunos_controller.rb:63:in `set_aluno'
+  Rendering layout layouts/application.html.erb
+  Rendering alunos/show.html.erb within layouts/application
+  [1m[36mTurma Load (0.2ms)[0m  [1m[34mSELECT "turmas".* FROM "turmas" WHERE "turmas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/alunos/_aluno.html.erb:9
+  Rendered alunos/_aluno.html.erb (Duration: 8.4ms | Allocations: 842)
+  Rendered alunos/show.html.erb within layouts/application (Duration: 12.1ms | Allocations: 1930)
+  Rendered layout layouts/application.html.erb (Duration: 29.2ms | Allocations: 4218)
+Completed 200 OK in 37ms (Views: 30.3ms | ActiveRecord: 0.5ms | Allocations: 5718)
+
+

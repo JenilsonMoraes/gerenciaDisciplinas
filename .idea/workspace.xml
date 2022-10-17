@@ -7,7 +7,6 @@
     <list default="true" id="a4584eb7-f9db-4090-ae5e-646034a48c61" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/development.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db/development.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20221017031127_create_alunos.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20221017031127_create_alunos.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/development.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/development.log" afterDir="false" />
     </list>
@@ -142,7 +141,7 @@
       <updated>1665975318361</updated>
       <workItem from="1665975332582" duration="597000" />
       <workItem from="1665976060657" duration="802000" />
-      <workItem from="1666011130783" duration="1604000" />
+      <workItem from="1666011130783" duration="3039000" />
     </task>
     <servers />
   </component>
