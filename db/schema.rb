@@ -33,8 +33,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_17_031441) do
   create_table "avaliacaos", force: :cascade do |t|
     t.float "pontos"
     t.string "observacoes"
+    t.integer "atividade_id", null: false
+    t.integer "aluno_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["aluno_id"], name: "index_avaliacaos_on_aluno_id"
+    t.index ["atividade_id"], name: "index_avaliacaos_on_atividade_id"
   end
 
   create_table "disciplinas", force: :cascade do |t|
@@ -56,5 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_17_031441) do
 
   add_foreign_key "alunos", "turmas"
   add_foreign_key "atividades", "disciplinas"
+  add_foreign_key "avaliacaos", "alunos"
+  add_foreign_key "avaliacaos", "atividades"
   add_foreign_key "disciplinas", "turmas"
 end

@@ -4,6 +4,9 @@ class CreateAvaliacaos < ActiveRecord::Migration[7.0]
       t.float :pontos
       t.string :observacoes
 
+      t.references :atividade, null:false, foreign_key: true
+      t.references :aluno, null:false, foreign_key: true
+
       t.timestamps
     end
   end
