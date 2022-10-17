@@ -65,6 +65,6 @@ class AlunosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def aluno_params
-      params.require(:aluno).permit(:nome)
+      params.require(:aluno).permit(:nome, :turma_id)
     end
 end
