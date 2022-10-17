@@ -5,7 +5,7 @@ class CreateAtividades < ActiveRecord::Migration[7.0]
       t.integer :bimestre
       t.string :descricao
       t.date :data
-
+      t.references :disciplina, null:false, foreign_key: true
       t.timestamps
     end
   end
