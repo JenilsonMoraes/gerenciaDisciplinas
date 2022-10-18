@@ -4949,3 +4949,74 @@ Processing by IndexController#index as TURBO_STREAM
 Completed 200 OK in 19ms (Views: 17.9ms | ActiveRecord: 0.2ms | Allocations: 3475)
 
 
+Started GET "/" for 127.0.0.1 at 2022-10-18 00:52:13 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by IndexController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering index/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:4:in `current_user'
+  Rendered index/index.html.erb within layouts/application (Duration: 84.3ms | Allocations: 8886)
+  Rendered layout layouts/application.html.erb (Duration: 274.3ms | Allocations: 42896)
+Completed 200 OK in 311ms (Views: 296.5ms | ActiveRecord: 2.9ms | Allocations: 46314)
+
+
+Started GET "/" for 127.0.0.1 at 2022-10-18 00:52:15 -0300
+Processing by IndexController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering index/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:4:in `current_user'
+  Rendered index/index.html.erb within layouts/application (Duration: 8.4ms | Allocations: 823)
+  Rendered layout layouts/application.html.erb (Duration: 18.7ms | Allocations: 3137)
+Completed 200 OK in 21ms (Views: 19.6ms | ActiveRecord: 0.2ms | Allocations: 3448)
+
+
+Started GET "/signup" for 127.0.0.1 at 2022-10-18 00:52:23 -0300
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 26.8ms | Allocations: 3218)
+  Rendered layout layouts/application.html.erb (Duration: 52.4ms | Allocations: 5603)
+Completed 200 OK in 71ms (Views: 69.9ms | ActiveRecord: 0.0ms | Allocations: 6433)
+
+
+Started POST "/users" for 127.0.0.1 at 2022-10-18 00:52:29 -0300
+Processing by UsersController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"username"=>"marcos", "password"=>"[FILTERED]"}, "commit"=>"Create User"}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["username", "marcos"], ["password_digest", "[FILTERED]"], ["created_at", "2022-10-18 03:52:29.741947"], ["updated_at", "2022-10-18 03:52:29.741947"]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (17.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 323ms (ActiveRecord: 18.4ms | Allocations: 3796)
+
+
+Started GET "/" for 127.0.0.1 at 2022-10-18 00:52:29 -0300
+Processing by IndexController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering index/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:4:in `current_user'
+  Rendered index/index.html.erb within layouts/application (Duration: 3.1ms | Allocations: 703)
+  Rendered layout layouts/application.html.erb (Duration: 27.2ms | Allocations: 3006)
+Completed 200 OK in 29ms (Views: 28.2ms | ActiveRecord: 0.2ms | Allocations: 3347)
+
+
+Started GET "/alunos" for 127.0.0.1 at 2022-10-18 00:52:48 -0300
+Processing by AlunosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering alunos/index.html.erb within layouts/application
+  [1m[36mAluno Load (0.3ms)[0m  [1m[34mSELECT "alunos".* FROM "alunos"[0m
+  ↳ app/views/alunos/index.html.erb:6
+  Rendered alunos/index.html.erb within layouts/application (Duration: 6.6ms | Allocations: 1328)
+  Rendered layout layouts/application.html.erb (Duration: 14.3ms | Allocations: 3738)
+Completed 200 OK in 38ms (Views: 16.8ms | ActiveRecord: 0.3ms | Allocations: 7115)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
