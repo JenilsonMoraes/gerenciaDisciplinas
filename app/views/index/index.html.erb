@@ -1,7 +1,14 @@
 <h1>Gerencia Disciplinas</h1>
 
-<a href="/alunos">Alunos</a>
-<a href="/turmas">Turmas</a>
-<a href="/disciplinas">Disciplinas</a>
-<a href="/atividades">Atividade</a>
-<a href="/avaliacaos">Avaliacao</a>
+
+
+<% if logged_in? %>
+  <a href="/alunos">Alunos</a>
+  <a href="/turmas">Turmas</a>
+  <a href="/disciplinas">Disciplinas</a>
+  <a href="/atividades">Atividade</a>
+  <a href="/avaliacaos">Avaliacao</a>
+  <% else %>
+  <a href="/login">Logar</a>
+  <a href="/signup">Criar login</a>
+<% end %>
