@@ -4787,3 +4787,165 @@ Started GET "/logout" for 127.0.0.1 at 2022-10-18 00:16:04 -0300
   
 ActionController::RoutingError (No route matches [GET] "/logout"):
   
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (16.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (23.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAlunos (20221017031127)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "alunos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nome" varchar, "turma_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_952067d150"
+FOREIGN KEY ("turma_id")
+  REFERENCES "turmas" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_alunos_on_turma_id" ON "alunos" ("turma_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031127"]]
+  [1m[36mTRANSACTION (18.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAtividades (20221017031225)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "atividades" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "titulo" varchar, "bimestre" integer, "descricao" varchar, "data" date, "disciplina_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_dbf726c5b4"
+FOREIGN KEY ("disciplina_id")
+  REFERENCES "disciplinas" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_atividades_on_disciplina_id" ON "atividades" ("disciplina_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031225"]]
+  [1m[36mTRANSACTION (23.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateAvaliacaos (20221017031259)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "avaliacaos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "pontos" float, "observacoes" varchar, "atividade_id" integer NOT NULL, "aluno_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_e2e6a32781"
+FOREIGN KEY ("atividade_id")
+  REFERENCES "atividades" ("id")
+, CONSTRAINT "fk_rails_7433d83df3"
+FOREIGN KEY ("aluno_id")
+  REFERENCES "alunos" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_avaliacaos_on_atividade_id" ON "avaliacaos" ("atividade_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_avaliacaos_on_aluno_id" ON "avaliacaos" ("aluno_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031259"]]
+  [1m[36mTRANSACTION (22.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateDisciplinas (20221017031405)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "disciplinas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "nome" varchar, "anoLetivo" integer, "turma_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_f651071277"
+FOREIGN KEY ("turma_id")
+  REFERENCES "turmas" ("id")
+)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE INDEX "index_disciplinas_on_turma_id" ON "disciplinas" ("turma_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031405"]]
+  [1m[36mTRANSACTION (19.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateTurmas (20221017031441)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "turmas" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "letra" varchar, "ano" integer, "anoLetivo" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221017031441"]]
+  [1m[36mTRANSACTION (23.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateUsers (20221018023904)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "password_digest" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221018023904"]]
+  [1m[36mTRANSACTION (19.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-10-18 03:19:38.128051"], ["updated_at", "2022-10-18 03:19:38.128051"]]
+  [1m[36mTRANSACTION (13.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2022-10-18 00:21:10 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by IndexController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering index/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:4:in `current_user'
+  Rendered index/index.html.erb within layouts/application (Duration: 51.4ms | Allocations: 6299)
+  Rendered layout layouts/application.html.erb (Duration: 52.4ms | Allocations: 6409)
+Completed 500 Internal Server Error in 78ms (ActiveRecord: 3.0ms | Allocations: 9765)
+
+
+  
+ActionView::Template::Error (Couldn't find User with 'id'=1):
+    2: 
+    3: 
+    4: 
+    5: <% if logged_in? %>
+    6:   <a href="/alunos">Alunos</a>
+    7:   <a href="/turmas">Turmas</a>
+    8:   <a href="/disciplinas">Disciplinas</a>
+  
+app/controllers/application_controller.rb:4:in `current_user'
+app/controllers/application_controller.rb:8:in `logged_in?'
+app/controllers/application_controller.rb:3:in `logged_in?'
+app/views/index/index.html.erb:5
+app/controllers/index_controller.rb:4:in `index'
+Started GET "/login" for 127.0.0.1 at 2022-10-18 00:21:34 -0300
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 24.7ms | Allocations: 2666)
+  Rendered layout layouts/application.html.erb (Duration: 306.7ms | Allocations: 37074)
+Completed 200 OK in 320ms (Views: 318.9ms | ActiveRecord: 0.0ms | Allocations: 37801)
+
+
+Started GET "/l" for 127.0.0.1 at 2022-10-18 00:22:19 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/l"):
+  
+Started GET "/" for 127.0.0.1 at 2022-10-18 00:22:23 -0300
+Processing by IndexController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering index/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:4:in `current_user'
+  Rendered index/index.html.erb within layouts/application (Duration: 16.6ms | Allocations: 1937)
+  Rendered layout layouts/application.html.erb (Duration: 17.3ms | Allocations: 2022)
+Completed 500 Internal Server Error in 35ms (ActiveRecord: 0.2ms | Allocations: 2775)
+
+
+  
+ActionView::Template::Error (Couldn't find User with 'id'=1):
+    1: <h1>Gerencia Disciplinas</h1>
+    2: 
+    3: <% if logged_in? %>
+    4:   <a href="/alunos">Alunos</a>
+    5:   <a href="/turmas">Turmas</a>
+    6:   <a href="/disciplinas">Disciplinas</a>
+  
+app/controllers/application_controller.rb:4:in `current_user'
+app/controllers/application_controller.rb:8:in `logged_in?'
+app/controllers/application_controller.rb:3:in `logged_in?'
+app/views/index/index.html.erb:3
+app/controllers/index_controller.rb:4:in `index'
+Started GET "/signup" for 127.0.0.1 at 2022-10-18 00:23:04 -0300
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 18.4ms | Allocations: 1764)
+  Rendered layout layouts/application.html.erb (Duration: 51.7ms | Allocations: 4339)
+Completed 200 OK in 100ms (Views: 57.9ms | ActiveRecord: 0.0ms | Allocations: 8830)
+
+
+Started POST "/users" for 127.0.0.1 at 2022-10-18 00:23:17 -0300
+Processing by UsersController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"username"=>"jenilson", "password"=>"[FILTERED]"}, "commit"=>"Create User"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["username", "jenilson"], ["password_digest", "[FILTERED]"], ["created_at", "2022-10-18 03:23:18.226504"], ["updated_at", "2022-10-18 03:23:18.226504"]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (22.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 316ms (ActiveRecord: 23.4ms | Allocations: 3752)
+
+
+Started GET "/" for 127.0.0.1 at 2022-10-18 00:23:18 -0300
+Processing by IndexController#index as TURBO_STREAM
+  Rendering layout layouts/application.html.erb
+  Rendering index/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:4:in `current_user'
+  Rendered index/index.html.erb within layouts/application (Duration: 8.2ms | Allocations: 729)
+  Rendered layout layouts/application.html.erb (Duration: 17.0ms | Allocations: 3122)
+Completed 200 OK in 19ms (Views: 17.9ms | ActiveRecord: 0.2ms | Allocations: 3475)
+
+
